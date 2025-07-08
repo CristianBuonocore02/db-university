@@ -58,19 +58,45 @@ per ogni appello d'Esame a cui lo Studente ha partecipato, è necessario memoriz
 1. Selezionare tutti gli studenti nati nel 1990 (160)    
 
 
-1. 
-
-SELECT * FROM university_db.students
+1. SELECT * FROM university_db.students
 WHERE year(date_of_birth) = 1990;
 
 
 
 2. Selezionare tutti i corsi che valgono più di 10 crediti (479)
+
+
+2. SELECT * FROM university_db.courses
+WHERE cfu > 10 ;
+
+
 3. Selezionare tutti gli studenti che hanno più di 30 anni
+
+
+3. SELECT * FROM university_db.students
+WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) > 30;
+
+
 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di
 laurea (286)
+
+4. SELECT * FROM university_db.courses
+WHERE year = 1 AND period = 1;
+
 5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del
 20/06/2020 (21)
+
+5. SELECT * FROM university_db.exams
+WHERE date = '2020-06-20' AND HOUR(hour) > 14;
+
 6. Selezionare tutti i corsi di laurea magistrale (38)
+
+6. SELECT * FROM university_db.degrees
+WHERE level = 'magistrale';
+
 7. Da quanti dipartimenti è composta l'università? (12)
+
 8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
+
+8. SELECT * FROM university_db.teachers
+WHERE PHONE IS NULL OR PHONE = '';
